@@ -57,6 +57,28 @@ export default function SkillsPage() {
                   aria-hidden="true"
                 />
               ) : null}
+              {group.tone === "blue" ? (
+                <div className="skillFolderProductInserts" aria-hidden="true">
+                  <img
+                    className="skillFolderFigmaInsert"
+                    src="/skill-inserts/figma.png"
+                    alt=""
+                  />
+                  <img
+                    className="skillFolderDocInsert skillFolderPrdInsert"
+                    src="/skill-inserts/prd-doc.svg"
+                    alt=""
+                  />
+                </div>
+              ) : null}
+              {group.tone === "cyan" ? (
+                <img
+                  className="skillFolderDocInsert skillFolderCertificateInsert"
+                  src="/skill-inserts/certificate.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+              ) : null}
               {group.highlights.map((item) => (
                 <span key={item}>{item}</span>
               ))}

@@ -9035,7 +9035,7 @@ h1 {
 }
 
 .skillsPage .skillFolderCard-blue .skillFolderChips::after {
-  content: "PRD文档";
+  content: none;
 }
 
 .skillsPage .skillFolderCard-ink .skillFolderChips::after {
@@ -9051,6 +9051,8 @@ h1 {
   align-items: flex-end;
   gap: 0;
   transform: translateY(-22%);
+  animation: skillFolderToolStackPop 720ms cubic-bezier(0.2, 0.85, 0.22, 1.08) both;
+  animation-delay: 180ms;
   pointer-events: none;
 }
 
@@ -9111,11 +9113,132 @@ h1 {
   border-radius: 10px;
   box-shadow: 0 10px 18px rgba(31, 50, 71, 0.08);
   transform: translateY(-22%) rotate(6deg);
+  animation: skillFolderEvalPop 720ms cubic-bezier(0.2, 0.85, 0.22, 1.08) both;
+  animation-delay: 260ms;
   pointer-events: none;
 }
 
 .skillsPage .skillFolderCard-cyan .skillFolderChips::after {
-  content: "证书";
+  content: none;
+}
+
+.skillsPage .skillFolderDocInsert {
+  position: absolute;
+  top: clamp(7px, 0.9vw, 12px);
+  right: clamp(54px, 5.8vw, 78px);
+  z-index: 0;
+  width: clamp(66px, 6vw, 84px);
+  height: clamp(78px, 7vw, 98px);
+  object-fit: contain;
+  transform: translateY(-28%) rotate(4deg);
+  pointer-events: none;
+}
+
+.skillsPage .skillFolderProductInserts {
+  position: absolute;
+  top: clamp(6px, 0.8vw, 12px);
+  right: clamp(50px, 5.4vw, 74px);
+  z-index: 0;
+  width: clamp(118px, 11vw, 152px);
+  height: clamp(84px, 7.6vw, 108px);
+  animation: skillFolderProductPop 720ms cubic-bezier(0.2, 0.85, 0.22, 1.08) both;
+  animation-delay: 100ms;
+  pointer-events: none;
+}
+
+.skillsPage .skillFolderProductInserts .skillFolderDocInsert {
+  top: 0;
+  right: clamp(42px, 4.2vw, 58px);
+}
+
+.skillsPage .skillFolderFigmaInsert {
+  position: absolute;
+  top: clamp(8px, 0.8vw, 12px);
+  right: 0;
+  z-index: 0;
+  width: clamp(50px, 4.8vw, 64px);
+  height: clamp(50px, 4.8vw, 64px);
+  border-radius: clamp(12px, 1.3vw, 16px);
+  box-shadow:
+    0 10px 18px rgba(31, 50, 71, 0.12),
+    0 0 0 1px rgba(23, 32, 51, 0.06);
+  transform: translateY(-18%) rotate(-8deg);
+}
+
+.skillsPage .skillFolderCertificateInsert {
+  right: clamp(58px, 6.2vw, 84px);
+  transform: translateY(-28%) rotate(7deg);
+  animation: skillFolderCertificatePop 720ms cubic-bezier(0.2, 0.85, 0.22, 1.08) both;
+  animation-delay: 340ms;
+}
+
+@keyframes skillFolderProductPop {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.92);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.025);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes skillFolderToolStackPop {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.9);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(-30%) scale(1.025);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-22%) scale(1);
+  }
+}
+
+@keyframes skillFolderEvalPop {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) rotate(6deg) scale(0.9);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(-30%) rotate(6deg) scale(1.025);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-22%) rotate(6deg) scale(1);
+  }
+}
+
+@keyframes skillFolderCertificatePop {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) rotate(7deg) scale(0.9);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(-36%) rotate(7deg) scale(1.025);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-28%) rotate(7deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skillsPage .skillFolderProductInserts,
+  .skillsPage .skillFolderToolStack,
+  .skillsPage .skillFolderEvalInsert,
+  .skillsPage .skillFolderCertificateInsert {
+    animation: none;
+  }
 }
 
 .skillsPage .skillFolderChips h2,

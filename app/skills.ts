@@ -7,8 +7,8 @@ export const skills = [
     iconSrc: "/skill-icons/product-design.svg",
     folderSrc: "/skill-folders/folder-green.png",
     summary:
-      "用户研究、竞品分析、需求拆解、业务流程梳理，能够输出 PRD 与原型图。",
-    highlights: ["PRD", "原型图"],
+      "用户研究、竞品分析、需求拆解、业务流程梳理，能够输出 PRD 与原型图，熟练使用 Figma、墨刀、Axure。",
+    highlights: ["PRD", "原型图", "Figma", "墨刀", "Axure"],
     tone: "blue",
   },
   {

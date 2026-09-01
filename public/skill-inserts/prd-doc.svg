@@ -1,0 +1,21 @@
+<svg width="180" height="210" viewBox="0 0 180 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <filter id="shadow" x="0" y="0" width="180" height="210" color-interpolation-filters="sRGB">
+    <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#1f3247" flood-opacity=".13"/>
+  </filter>
+  <g filter="url(#shadow)" transform="rotate(7 92 104)">
+    <rect x="24" y="18" width="128" height="168" rx="16" fill="url(#paper)"/>
+    <rect x="24" y="18" width="128" height="168" rx="16" stroke="#CDD1D5" stroke-width="3"/>
+    <path d="M24 62H152" stroke="#CDD1D5" stroke-width="3"/>
+    <text x="88" y="49" text-anchor="middle" font-family="Arial, 'PingFang SC', sans-serif" font-size="22" font-weight="900" fill="#6F7379">PRD文档</text>
+    <rect x="43" y="84" width="72" height="9" rx="4.5" fill="#D8D9DB"/>
+    <rect x="43" y="106" width="94" height="9" rx="4.5" fill="#D4D6D8"/>
+    <rect x="43" y="128" width="88" height="9" rx="4.5" fill="#D9DADC"/>
+    <rect x="43" y="150" width="68" height="9" rx="4.5" fill="#D6D8DA"/>
+  </g>
+  <defs>
+    <linearGradient id="paper" x1="37" y1="30" x2="145" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F3F4F5"/>
+    </linearGradient>
+  </defs>
+</svg>
