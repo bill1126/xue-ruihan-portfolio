@@ -1,0 +1,114 @@
+{
+  "_framework-CXnKph_e.js": {
+    "file": "assets/framework-CXnKph_e.js",
+    "name": "framework",
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js"
+    ]
+  },
+  "_rolldown-runtime-S-ySWqyJ.js": {
+    "file": "assets/rolldown-runtime-S-ySWqyJ.js",
+    "name": "rolldown-runtime"
+  },
+  "app/components/WorkDetailNav.tsx": {
+    "file": "assets/WorkDetailNav-CXwqfbOz.js",
+    "name": "WorkDetailNav",
+    "src": "app/components/WorkDetailNav.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "virtual:vinext-app-browser-entry",
+      "_framework-CXnKph_e.js",
+      "node_modules/vinext/dist/shims/link.js"
+    ]
+  },
+  "app/components/WorkHashScroller.tsx": {
+    "file": "assets/WorkHashScroller-Bkhw_sdw.js",
+    "name": "WorkHashScroller",
+    "src": "app/components/WorkHashScroller.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "_framework-CXnKph_e.js"
+    ]
+  },
+  "app/components/WorkSequenceNav.tsx": {
+    "file": "assets/WorkSequenceNav-BLDCEfmQ.js",
+    "name": "WorkSequenceNav",
+    "src": "app/components/WorkSequenceNav.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "_framework-CXnKph_e.js"
+    ]
+  },
+  "node_modules/vinext/dist/shims/image.js": {
+    "file": "assets/image-DVmnoWzk.js",
+    "name": "image",
+    "src": "node_modules/vinext/dist/shims/image.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "_framework-CXnKph_e.js"
+    ]
+  },
+  "node_modules/vinext/dist/shims/layout-segment-context.js": {
+    "file": "assets/layout-segment-context-DW5a7_f9.js",
+    "name": "layout-segment-context",
+    "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "virtual:vinext-app-browser-entry",
+      "_framework-CXnKph_e.js"
+    ]
+  },
+  "node_modules/vinext/dist/shims/link.js": {
+    "file": "assets/link-CH5hNvIz.js",
+    "name": "link",
+    "src": "node_modules/vinext/dist/shims/link.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "virtual:vinext-app-browser-entry",
+      "_framework-CXnKph_e.js"
+    ],
+    "dynamicImports": [
+      "node_modules/vinext/dist/shims/router.js"
+    ]
+  },
+  "node_modules/vinext/dist/shims/router.js": {
+    "file": "assets/router-DBd4dmHv.js",
+    "name": "router",
+    "src": "node_modules/vinext/dist/shims/router.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "virtual:vinext-app-browser-entry",
+      "_framework-CXnKph_e.js",
+      "node_modules/vinext/dist/shims/link.js"
+    ],
+    "dynamicImports": [
+      "_framework-CXnKph_e.js"
+    ]
+  },
+  "virtual:vinext-app-browser-entry": {
+    "file": "assets/index-UwVbNXO6.js",
+    "name": "index",
+    "src": "virtual:vinext-app-browser-entry",
+    "isEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "_framework-CXnKph_e.js"
+    ],
+    "dynamicImports": [
+      "node_modules/vinext/dist/shims/layout-segment-context.js",
+      "virtual:vinext-app-browser-entry",
+      "app/components/WorkSequenceNav.tsx",
+      "node_modules/vinext/dist/shims/image.js",
+      "app/components/WorkHashScroller.tsx",
+      "app/components/WorkDetailNav.tsx",
+      "node_modules/vinext/dist/shims/link.js"
+    ]
+  }
+}
