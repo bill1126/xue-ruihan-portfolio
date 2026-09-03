@@ -44,15 +44,15 @@ export default function SkillsPage() {
               <h2>{group.group}</h2>
               {group.tone === "ink" ? (
                 <div className="skillFolderToolStack" aria-hidden="true">
-                  <img src="/skill-inserts/claude.png" alt="" />
-                  <img src="/skill-inserts/codex.png" alt="" />
-                  <img src="/skill-inserts/cursor.png" alt="" />
+                  <img src="/skill-inserts/claude.webp" alt="" />
+                  <img src="/skill-inserts/codex.webp" alt="" />
+                  <img src="/skill-inserts/cursor.webp" alt="" />
                 </div>
               ) : null}
               {group.tone === "paper" ? (
                 <img
                   className="skillFolderEvalInsert"
-                  src="/skill-inserts/eval-table.png"
+                  src="/skill-inserts/eval-table.webp"
                   alt=""
                   aria-hidden="true"
                 />
@@ -61,7 +61,7 @@ export default function SkillsPage() {
                 <div className="skillFolderProductInserts" aria-hidden="true">
                   <img
                     className="skillFolderFigmaInsert"
-                    src="/skill-inserts/figma.png"
+                    src="/skill-inserts/figma.webp"
                     alt=""
                   />
                   <img

@@ -2,7 +2,10 @@
 import { notFound } from "next/navigation";
 import TopNav from "../../components/TopNav";
 import WorkDetailNav from "../../components/WorkDetailNav";
+import WorkHashScroller from "../../components/WorkHashScroller";
+import WorkSequenceNav from "../../components/WorkSequenceNav";
 import { projects } from "../../projects";
+import { workImageGroups } from "../../workImageGroups";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -21,25 +24,49 @@ const projectImagePages: Partial<
 > = {
   "food-nutrition-agent": [
     {
-      src: "/food-nutrition-agent-overview.png",
+      src: "/food-nutrition-agent-overview.webp",
       alt: "食序 AI 食养助手项目工作拆解展示",
     },
     {
-      src: "/food-nutrition-agent-prototype.png",
+      src: "/food-nutrition-agent-prototype.webp",
       alt: "食序 AI 食养助手 App 原型展示",
     },
   ],
   "drone-rescue-agent": [
     {
-      src: "/drone-rescue-agent-overview.png",
+      src: "/drone-rescue-agent-overview.webp",
       alt: "天网寻踪无人机搜救任务调度项目工作拆解展示",
     },
     {
-      src: "/drone-rescue-agent-flow.png",
+      src: "/drone-rescue-agent-flow.webp",
       alt: "天网寻踪无人机搜救任务调度 App 流程展示",
     },
   ],
 };
+
+function WorkSequenceImageGallery() {
+  return (
+    <div className="workDetailScene">
+      <section className="caseImageGallery workSequenceGallery" aria-label="实习和项目详情顺序展示">
+        {workImageGroups.map((group, groupIndex) => (
+          <article className="workSequenceGroup" data-work-anchor={group.id} key={group.href}>
+            <header className="workSequenceHeader">
+              <span>
+                {String(groupIndex + 1).padStart(2, "0")}/{String(workImageGroups.length).padStart(2, "0")}
+              </span>
+              <h2>{group.label}</h2>
+            </header>
+            {group.images.map((image) => (
+              <figure className="caseImageOnlyFrame" key={image.src}>
+                <img src={image.src} alt={image.alt} width={image.width} height={image.height} />
+              </figure>
+            ))}
+          </article>
+        ))}
+      </section>
+    </div>
+  );
+}
 
 export async function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -71,16 +98,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   if (imagePages) {
     return (
-      <main className="projectDetail detailPage caseStudyPage imageOnlyCasePage">
+      <main className="projectDetail detailPage caseStudyPage imageOnlyCasePage workScrollCasePage">
         <TopNav active="work" />
         <WorkDetailNav activeHref={`/projects/${project.slug}`} />
-        <section className="caseImageGallery" aria-label={`${project.title}项目图片展示`}>
-          {imagePages.map((image) => (
-            <figure className="caseImageOnlyFrame" key={image.src}>
-              <img src={image.src} alt={image.alt} />
-            </figure>
-          ))}
-        </section>
+        <WorkHashScroller />
+        <WorkSequenceNav />
+        <WorkSequenceImageGallery />
       </main>
     );
   }

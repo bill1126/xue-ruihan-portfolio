@@ -2,7 +2,10 @@
 import { notFound } from "next/navigation";
 import TopNav from "../../components/TopNav";
 import WorkDetailNav from "../../components/WorkDetailNav";
+import WorkHashScroller from "../../components/WorkHashScroller";
+import WorkSequenceNav from "../../components/WorkSequenceNav";
 import { experiences } from "../../experiences";
+import { workImageGroups } from "../../workImageGroups";
 
 type ExperiencePageProps = {
   params: Promise<{
@@ -47,21 +50,21 @@ const caseStudyContent = {
       ["流程沉淀", "把单次项目经验沉淀为 AI Coding 工作流和开发规范。"],
     ],
     buildNotes: ["玩法想法", "交互状态", "开发 Prompt", "上线验收"],
-    heroImage: "/ape-ai-games-overview.png",
+    heroImage: "/ape-ai-games-overview.webp",
     heroImageAlt: "猿辅导 AI 产品实习工作拆解与成果量化展示",
     visualSections: [
       {
         eyebrow: "WORKFLOW ASSET",
         title: "AI coding 规范沉淀",
         body: "把单个游戏开发中反复出现的问题拆成页面流程、SDK、Prompt、验收清单和可复用 Skill，让下一款游戏可以沿用同一套开发流程。",
-        image: "/ape-ai-coding-workflow.png",
+        image: "/ape-ai-coding-workflow.webp",
         alt: "AI coding 规范沉淀与可复用开发流程展示",
       },
       {
         eyebrow: "UI DISPLAY",
         title: "部分界面 UI 展示",
         body: "三款 H5 小游戏覆盖不同题型、场景和反馈机制，重点验证低龄学习场景里的可玩性、清晰度和多端适配稳定性。",
-        image: "/ape-ai-games-ui-display.png",
+        image: "/ape-ai-games-ui-display.webp",
         alt: "猿辅导 H5 AI 学习小游戏部分界面 UI 展示",
       },
     ],
@@ -102,14 +105,14 @@ const caseStudyContent = {
       ["验证闭环", "通过结果反馈修正学习路径，并为后续策略迭代留出数据入口。"],
     ],
     buildNotes: ["错因输入", "路径分流", "Agent Skill", "结果反馈"],
-    heroImage: "/tal-learning-agent-overview.png",
+    heroImage: "/tal-learning-agent-overview.webp",
     heroImageAlt: "学而思 AI 产品实习工作拆解与成果量化展示",
     visualSections: [
       {
         eyebrow: "AGENT PATH DESIGN",
         title: "错题复习 Agent 方案设计",
         body: "从错因诊断到路径分流，搭建学习、练习与验证闭环。",
-        image: "/tal-learning-agent-paths.png",
+        image: "/tal-learning-agent-paths.webp",
         alt: "学而思错题复习 Agent 从错因诊断到路径分流展示",
       },
     ],
@@ -150,21 +153,21 @@ const caseStudyContent = {
       ["质量迭代", "通过 Bad Case 分析推动多轮 Prompt、规则和原型优化。"],
     ],
     buildNotes: ["角色流程", "权限边界", "Agent 节点", "人工确认"],
-    heroImage: "/yuanhe-medical-agent-overview.png",
+    heroImage: "/yuanhe-medical-agent-overview.webp",
     heroImageAlt: "源和信息 AI 产品实习成果量化与工作拆解展示",
     visualSections: [
       {
         eyebrow: "PLATFORM WORKFLOW",
         title: "双向转诊平台流程拆解",
         body: "梳理多角色流程、需求边界与 AI 能力嵌入位置。",
-        image: "/yuanhe-medical-agent-workflow.png",
+        image: "/yuanhe-medical-agent-workflow.webp",
         alt: "源和信息双向转诊平台复杂流程拆解展示",
       },
       {
         eyebrow: "UI DISPLAY",
         title: "双向转诊平台多端界面展示",
         body: "展示卫健委端、管理端和医生端核心界面。",
-        image: "/yuanhe-medical-agent-ui.png",
+        image: "/yuanhe-medical-agent-ui.webp",
         alt: "源和信息双向转诊平台多端界面展示",
       },
     ],
@@ -200,24 +203,28 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
   const content = caseStudyContent[experience.slug];
 
   if (content.heroImage && content.visualSections.length > 0) {
-    const images = [
-      { src: content.heroImage, alt: content.heroImageAlt },
-      ...content.visualSections.map((section) => ({
-        src: section.image,
-        alt: section.alt,
-      })),
-    ];
-
     return (
-      <main className="projectDetail detailPage caseStudyPage imageOnlyCasePage">
+      <main className="projectDetail detailPage caseStudyPage imageOnlyCasePage workScrollCasePage">
         <TopNav active="work" />
         <WorkDetailNav activeHref={`/experiences/${experience.slug}`} />
+        <WorkHashScroller />
+        <WorkSequenceNav />
         <div className="workDetailScene">
-          <section className="caseImageGallery" aria-label={`${experience.company}项目图片展示`}>
-            {images.map((image) => (
-              <figure className="caseImageOnlyFrame" key={image.src}>
-                <img src={image.src} alt={image.alt} />
-              </figure>
+          <section className="caseImageGallery workSequenceGallery" aria-label="实习和项目详情顺序展示">
+            {workImageGroups.map((group, groupIndex) => (
+              <article className="workSequenceGroup" data-work-anchor={group.id} key={group.href}>
+                <header className="workSequenceHeader">
+                  <span>
+                    {String(groupIndex + 1).padStart(2, "0")}/{String(workImageGroups.length).padStart(2, "0")}
+                  </span>
+                  <h2>{group.label}</h2>
+                </header>
+                {group.images.map((image) => (
+                  <figure className="caseImageOnlyFrame" key={image.src}>
+                    <img src={image.src} alt={image.alt} width={image.width} height={image.height} />
+                  </figure>
+                ))}
+              </article>
             ))}
           </section>
         </div>

@@ -5,7 +5,7 @@ export const projects = [
     title: "食序 AI 食养助手",
     period: "2026.04 - 2026.06",
     role: "项目负责人",
-    cover: "/food-nutrition-cover.png",
+    cover: "/food-nutrition-cover.webp",
     summary:
       "面向 25-35 岁职场亚健康用户，设计个性化饮食管理和 AI 食养推荐服务闭环。",
     problem: "饮食管理缺少个性化与持续反馈，用户难以把健康建议转化为日常行动。",
@@ -24,7 +24,7 @@ export const projects = [
     title: "天网寻踪无人机搜救",
     period: "2026.04 - 2026.06",
     role: "项目负责人",
-    cover: "/drone-rescue-cover.png",
+    cover: "/drone-rescue-cover.webp",
     summary:
       "针对无人机失踪人口搜救场景，设计调度 Agent、App 原型和服务系统方案。",
     problem: "搜救任务中案件信息分散、区域划定和多角色协同复杂，影响搜救效率。",

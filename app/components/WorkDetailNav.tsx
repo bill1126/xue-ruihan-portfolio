@@ -73,7 +73,7 @@ export default function WorkDetailNav({ activeHref }: WorkDetailNavProps) {
       <div className="workDetailReturn">
         <Link href="/work" aria-label="返回全部实习和项目经历">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/work-return-button.png" alt="" aria-hidden="true" />
+          <img src="/work-return-button.webp" alt="" aria-hidden="true" />
         </Link>
       </div>
 
@@ -86,7 +86,7 @@ export default function WorkDetailNav({ activeHref }: WorkDetailNavProps) {
             onClick={(event) => switchWorkItem(event, previousItem.href, "left")}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/work-switch-left.png" alt="" aria-hidden="true" />
+            <img src="/work-switch-left.webp" alt="" aria-hidden="true" />
           </Link>
         ) : null}
         {nextItem ? (
@@ -97,7 +97,7 @@ export default function WorkDetailNav({ activeHref }: WorkDetailNavProps) {
             onClick={(event) => switchWorkItem(event, nextItem.href, "right")}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/work-switch-right.png" alt="" aria-hidden="true" />
+            <img src="/work-switch-right.webp" alt="" aria-hidden="true" />
           </Link>
         ) : null}
       </nav>

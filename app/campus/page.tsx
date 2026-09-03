@@ -35,10 +35,21 @@ export default function CampusPage() {
               <p>{item.degree}</p>
               <h2>{item.displaySchool}</h2>
               <p>{item.summary}</p>
-              <div className="campusAwardRow" aria-label={`${item.school}奖项与荣誉`}>
-                {item.highlights.map((highlight) => (
-                  <span key={highlight.label}>{highlight.label}</span>
+              <div className="campusAwardBlock" aria-label={`${item.school}奖项与荣誉`}>
+                <p className="campusAwardTitle">
+                  <span aria-hidden="true">★</span>
+                  荣誉奖项
+                </p>
+                <div className="campusAwardRow">
+                {item.highlights.map((highlight, highlightIndex) => (
+                  <span
+                    className={highlightIndex === 0 ? "isFeatured" : undefined}
+                    key={highlight.label}
+                  >
+                    {highlight.label}
+                  </span>
                 ))}
+                </div>
               </div>
             </div>
           </article>

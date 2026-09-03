@@ -2,6 +2,7 @@ import TopNav from "../components/TopNav";
 import WorkFloatGallery from "../components/WorkFloatGallery";
 import { experiences } from "../experiences";
 import { projects } from "../projects";
+import { workImageGroups } from "../workImageGroups";
 
 export const metadata = {
   title: "实习和项目经历 | 薛瑞涵",
@@ -9,25 +10,39 @@ export const metadata = {
 };
 
 export default function WorkPage() {
+  const detailHrefFor = (href: string) => {
+    const group = workImageGroups.find((item) => item.href === href);
+
+    return group ? `${href}#${group.id}` : href;
+  };
+
   const workItems = [
-    ...experiences.map((item) => ({
-      type: "实习",
-      index: item.index,
-      time: item.time,
-      role: item.role,
-      title: item.brand ?? item.company,
-      summary: item.summary,
-      href: `/experiences/${item.slug}`,
-    })),
-    ...projects.map((project) => ({
-      type: "项目",
-      index: project.index,
-      time: project.period,
-      role: project.role,
-      title: project.title,
-      summary: project.summary,
-      href: `/projects/${project.slug}`,
-    })),
+    ...experiences.map((item) => {
+      const href = `/experiences/${item.slug}`;
+
+      return {
+        type: "实习",
+        index: item.index,
+        time: item.time,
+        role: item.role,
+        title: item.brand ?? item.company,
+        summary: item.summary,
+        href: detailHrefFor(href),
+      };
+    }),
+    ...projects.map((project) => {
+      const href = `/projects/${project.slug}`;
+
+      return {
+        type: "项目",
+        index: project.index,
+        time: project.period,
+        role: project.role,
+        title: project.title,
+        summary: project.summary,
+        href: detailHrefFor(href),
+      };
+    }),
   ];
 
   return (

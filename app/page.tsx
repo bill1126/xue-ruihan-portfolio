@@ -11,7 +11,7 @@ export default function Home() {
             <p className="scriptName">AI Product Manager</p>
             <h1>Hi，我是薛瑞涵</h1>
             <p className="lead">
-              985 产品设计硕士在读，面向 AI 产品经理方向，关注 Agent 驱动的学习体验、AI Coding 工作流与真实场景中的产品落地。
+              北京理工大学产品设计硕士在读，拥有 3 段 AI 产品实习经历，聚焦 Agent 体验设计、AI Coding 互动产品与真实业务场景落地。
             </p>
             <div className="introFacts" aria-label="个人信息">
               <span>
@@ -36,14 +36,14 @@ export default function Home() {
               </span>
             </div>
             <p className="introNote">
-              我习惯从用户场景和问题定义出发，把设计表达、交互原型、技术理解和产品判断串联起来，推动想法从概念走向可验证的方案。
+              我擅长从用户问题出发，完成需求拆解、产品路径设计、原型验证与上线迭代，并将 AI 能力转化为可落地的产品体验。
             </p>
           </div>
 
           <aside className="profilePanel" aria-label="Profile summary">
             <span className="photoBadge">about me</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/profile-casual.jpg" alt="薛瑞涵个人照片" />
+            <img src="/profile-casual.webp" alt="薛瑞涵个人照片" />
             <div>
               <p className="profileName">AI 产品经理 / 产品实习</p>
               <p>北京 | 2002.11 | 中共党员</p>

@@ -16,7 +16,6 @@ export default function ContactActions() {
 
   return (
     <div className="contactActions">
-      <a href={`mailto:${email}`}>写邮件给我 ↗</a>
       <button type="button" onClick={() => copyText(email, "email")}>
         {copied === "email" ? "已复制邮箱" : "复制邮箱"}
       </button>

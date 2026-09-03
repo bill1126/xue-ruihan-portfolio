@@ -18,25 +18,25 @@ export default function ContactPage() {
             {
               name: "乒乓球",
               className: "tableTennis",
-              src: "/hobbies-cute/table-tennis.png",
+              src: "/hobbies-cute/table-tennis.webp",
             },
             {
               name: "毛笔字",
               className: "calligraphy",
-              src: "/hobbies-cute/calligraphy.png",
+              src: "/hobbies-cute/calligraphy.webp",
             },
             {
               name: "游泳",
               className: "swimming",
-              src: "/hobbies-cute/swimming.png",
+              src: "/hobbies-cute/swimming.webp",
             },
             {
               name: "羽毛球",
               className: "badminton",
-              src: "/hobbies-cute/badminton.png",
+              src: "/hobbies-cute/badminton.webp",
             },
-            { name: "二胡", className: "erhu", src: "/hobbies-cute/erhu.png" },
-            { name: "钢琴", className: "piano", src: "/hobbies-cute/piano.png" },
+            { name: "二胡", className: "erhu", src: "/hobbies-cute/erhu.webp" },
+            { name: "钢琴", className: "piano", src: "/hobbies-cute/piano.webp" },
           ].map((hobby) => (
             <button
               aria-label={hobby.name}
