@@ -52,10 +52,6 @@ export default function ContactPage() {
         <div className="contactIntro">
           <p>Contact</p>
           <h1>联系我</h1>
-          <p>
-            期待 AI 产品经理、AI 产品实习及相关方向的机会。也欢迎一起聊聊
-            Agent 产品、学习体验、AI Coding 工作流和真实场景里的产品落地。
-          </p>
 
           <ContactActions />
 
