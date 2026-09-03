@@ -8,8 +8,8 @@ const navItems = [
   { href: "/", label: "首页", key: "home" },
   { href: "/campus", label: "校园经历", key: "campus" },
   { href: "/work", label: "实习项目", key: "work" },
-  { href: "/design", label: "设计作品", key: "design" },
   { href: "/skills", label: "专业技能", key: "skills" },
+  { href: "/design", label: "设计作品", key: "design" },
   { href: "/contact", label: "联系我", key: "contact" },
 ] as const;
 
