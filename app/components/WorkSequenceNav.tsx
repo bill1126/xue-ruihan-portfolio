@@ -4,8 +4,12 @@ import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import { workImageGroups } from "../workImageGroups";
 
-export default function WorkSequenceNav() {
-  const [activeId, setActiveId] = useState(workImageGroups[0]?.id);
+type WorkSequenceNavProps = {
+  activeId?: string;
+};
+
+export default function WorkSequenceNav({ activeId: initialActiveId = workImageGroups[0]?.id }: WorkSequenceNavProps) {
+  const [activeId, setActiveId] = useState(initialActiveId);
 
   useEffect(() => {
     const targets = workImageGroups
@@ -35,10 +39,16 @@ export default function WorkSequenceNav() {
   }, []);
 
   const handleClick = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    const target = document.querySelector<HTMLElement>(`[data-work-anchor="${id}"]`);
+
+    if (!target) {
+      return;
+    }
+
     event.preventDefault();
     setActiveId(id);
     window.history.pushState(null, "", `#${id}`);
-    document.querySelector<HTMLElement>(`[data-work-anchor="${id}"]`)?.scrollIntoView({ block: "start" });
+    target.scrollIntoView({ block: "start" });
   };
 
   return (
@@ -46,7 +56,7 @@ export default function WorkSequenceNav() {
       {workImageGroups.map((group, index) => (
         <a
           className={activeId === group.id ? "isActive" : undefined}
-          href={`#${group.id}`}
+          href={`${group.href}/#${group.id}`}
           key={group.id}
           onClick={handleClick(group.id)}
           aria-current={activeId === group.id ? "location" : undefined}

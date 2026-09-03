@@ -44,11 +44,16 @@ const projectImagePages: Partial<
   ],
 };
 
-function WorkSequenceImageGallery() {
+function WorkSequenceImageGallery({ activeHref }: { activeHref: string }) {
+  const visibleGroups = workImageGroups.filter((group) => group.href === activeHref);
+
   return (
     <div className="workDetailScene">
       <section className="caseImageGallery workSequenceGallery" aria-label="实习和项目详情顺序展示">
-        {workImageGroups.map((group, groupIndex) => (
+        {visibleGroups.map((group) => {
+          const groupIndex = workImageGroups.findIndex((item) => item.id === group.id);
+
+          return (
           <article className="workSequenceGroup" data-work-anchor={group.id} id={group.id} key={group.href}>
             <header className="workSequenceHeader">
               <span>
@@ -62,7 +67,8 @@ function WorkSequenceImageGallery() {
               </figure>
             ))}
           </article>
-        ))}
+          );
+        })}
       </section>
     </div>
   );
@@ -97,13 +103,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const imagePages = projectImagePages[project.slug];
 
   if (imagePages) {
+    const activeHref = `/projects/${project.slug}`;
+    const activeGroup = workImageGroups.find((group) => group.href === activeHref);
+
     return (
       <main className="projectDetail detailPage caseStudyPage imageOnlyCasePage workScrollCasePage">
         <TopNav active="work" />
-        <WorkDetailNav activeHref={`/projects/${project.slug}`} />
+        <WorkDetailNav activeHref={activeHref} />
         <WorkHashScroller />
-        <WorkSequenceNav />
-        <WorkSequenceImageGallery />
+        <WorkSequenceNav activeId={activeGroup?.id} />
+        <WorkSequenceImageGallery activeHref={activeHref} />
       </main>
     );
   }

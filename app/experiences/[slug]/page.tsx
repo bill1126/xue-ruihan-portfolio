@@ -203,15 +203,22 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
   const content = caseStudyContent[experience.slug];
 
   if (content.heroImage && content.visualSections.length > 0) {
+    const activeHref = `/experiences/${experience.slug}`;
+    const activeGroup = workImageGroups.find((group) => group.href === activeHref);
+    const visibleGroups = activeGroup ? [activeGroup] : [];
+
     return (
       <main className="projectDetail detailPage caseStudyPage imageOnlyCasePage workScrollCasePage">
         <TopNav active="work" />
-        <WorkDetailNav activeHref={`/experiences/${experience.slug}`} />
+        <WorkDetailNav activeHref={activeHref} />
         <WorkHashScroller />
-        <WorkSequenceNav />
+        <WorkSequenceNav activeId={activeGroup?.id} />
         <div className="workDetailScene">
           <section className="caseImageGallery workSequenceGallery" aria-label="实习和项目详情顺序展示">
-            {workImageGroups.map((group, groupIndex) => (
+            {visibleGroups.map((group) => {
+              const groupIndex = workImageGroups.findIndex((item) => item.id === group.id);
+
+              return (
               <article className="workSequenceGroup" data-work-anchor={group.id} id={group.id} key={group.href}>
                 <header className="workSequenceHeader">
                   <span>
@@ -225,7 +232,8 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                   </figure>
                 ))}
               </article>
-            ))}
+              );
+            })}
           </section>
         </div>
       </main>
