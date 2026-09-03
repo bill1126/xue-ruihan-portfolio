@@ -49,7 +49,7 @@ function WorkSequenceImageGallery() {
     <div className="workDetailScene">
       <section className="caseImageGallery workSequenceGallery" aria-label="实习和项目详情顺序展示">
         {workImageGroups.map((group, groupIndex) => (
-          <article className="workSequenceGroup" data-work-anchor={group.id} key={group.href}>
+          <article className="workSequenceGroup" data-work-anchor={group.id} id={group.id} key={group.href}>
             <header className="workSequenceHeader">
               <span>
                 {String(groupIndex + 1).padStart(2, "0")}/{String(workImageGroups.length).padStart(2, "0")}
