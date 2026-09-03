@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useMemo, useState } from "react";
-
 type DesignWork = {
   title: string;
   category: string;
@@ -34,94 +30,50 @@ export default function DesignWorksCarousel({ items }: DesignWorksCarouselProps)
     0,
     items.findIndex((item) => item.title.includes("天网寻踪")),
   );
-  const [activeIndex, setActiveIndex] = useState(() => featuredIndex);
-  const [previewIndex, setPreviewIndex] = useState<number | null>(null);
-  const [introDone, setIntroDone] = useState(false);
-  const activeItem = items[activeIndex];
-  const previewItem = previewIndex === null ? null : items[previewIndex];
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setIntroDone(true), 760);
-
-    return () => window.clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (previewIndex === null) {
-      return;
-    }
-
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setPreviewIndex(null);
-      }
-    };
-
-    document.addEventListener("keydown", closeOnEscape);
-
-    return () => {
-      document.body.style.overflow = originalOverflow;
-      document.removeEventListener("keydown", closeOnEscape);
-    };
-  }, [previewIndex]);
-
-  const visibleItems = useMemo(
-    () =>
-      items.map((item, index) => ({
-        ...item,
-        offset: getWrappedOffset(index, activeIndex, items.length),
-      })),
-    [activeIndex, items],
-  );
-
-  const goToPrevious = () => {
-    setActiveIndex((current) => (current - 1 + items.length) % items.length);
-  };
-
-  const goToNext = () => {
-    setActiveIndex((current) => (current + 1) % items.length);
-  };
+  const activeItem = items[featuredIndex];
 
   return (
-    <div className="designCarouselShell">
+    <div className="designCarouselShell" data-design-carousel>
       <div className="designCarouselStage" aria-live="polite">
         <button
           className="designCarouselButton designCarouselButtonPrevious"
           type="button"
           aria-label="查看上一件设计作品"
-          onClick={goToPrevious}
+          data-carousel-previous
         >
           <span aria-hidden="true">←</span>
         </button>
 
         <div className="designCarouselCards" aria-label="设计作品轮播">
-          {visibleItems.map((item, index) => {
-            const isActive = index === activeIndex;
-            const isVisible = Math.abs(item.offset) <= 2;
+          {items.map((item, index) => {
+            const offset = getWrappedOffset(index, featuredIndex, items.length);
+            const isActive = index === featuredIndex;
+            const isVisible = Math.abs(offset) <= 2;
 
             return (
               <button
                 className="designWorkCard"
                 type="button"
                 key={item.title}
-                data-offset={item.offset}
+                data-index={index}
+                data-title={item.title}
+                data-category={item.category}
+                data-summary={item.summary}
+                data-image={item.image}
+                data-offset={offset}
                 data-active={isActive ? "true" : "false"}
-                data-intro-done={introDone ? "true" : "false"}
+                data-intro-done="false"
                 aria-label={`查看 ${item.title}`}
                 aria-hidden={isVisible ? undefined : true}
                 tabIndex={isVisible ? 0 : -1}
-                onClick={() => {
-                  setActiveIndex(index);
-                  if (isActive) {
-                    setPreviewIndex(index);
-                  }
-                }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={item.image} alt={item.title} />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading={isActive ? "eager" : "lazy"}
+                  fetchPriority={isActive ? "high" : "auto"}
+                />
                 <span className="designWorkOverlay">
                   <strong>{item.title}</strong>
                   <em>{item.category}</em>
@@ -135,47 +87,125 @@ export default function DesignWorksCarousel({ items }: DesignWorksCarouselProps)
           className="designCarouselButton designCarouselButtonNext"
           type="button"
           aria-label="查看下一件设计作品"
-          onClick={goToNext}
+          data-carousel-next
         >
           <span aria-hidden="true">→</span>
         </button>
       </div>
 
-      <div className="designCarouselMeta" key={activeItem.title}>
-        <span>{activeItem.category}</span>
-        <h2>{activeItem.title}</h2>
-        <p>{activeItem.summary}</p>
+      <div className="designCarouselMeta" data-carousel-meta>
+        <span data-carousel-meta-category>{activeItem.category}</span>
+        <h2 data-carousel-meta-title>{activeItem.title}</h2>
+        <p data-carousel-meta-summary>{activeItem.summary}</p>
       </div>
 
-      {previewItem ? (
-        <div
-          className="designPreviewLightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${previewItem.title} 大图预览`}
-          onClick={() => setPreviewIndex(null)}
-        >
-          <button
-            className="designPreviewClose"
-            type="button"
-            aria-label="关闭大图预览"
-            onClick={() => setPreviewIndex(null)}
-          >
-            <span aria-hidden="true">×</span>
-          </button>
-          <figure
-            className="designPreviewFigure"
-            onClick={(event) => event.stopPropagation()}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={previewItem.image} alt={previewItem.title} />
-            <figcaption>
-              <strong>{previewItem.title}</strong>
-              <span>{previewItem.category}</span>
-            </figcaption>
-          </figure>
-        </div>
-      ) : null}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+(() => {
+  const root = document.currentScript?.closest("[data-design-carousel]");
+  if (!root) return;
+
+  const cards = Array.from(root.querySelectorAll("[data-index]"));
+  const previous = root.querySelector("[data-carousel-previous]");
+  const next = root.querySelector("[data-carousel-next]");
+  const meta = {
+    category: root.querySelector("[data-carousel-meta-category]"),
+    title: root.querySelector("[data-carousel-meta-title]"),
+    summary: root.querySelector("[data-carousel-meta-summary]"),
+  };
+  let activeIndex = ${featuredIndex};
+
+  const wrappedOffset = (index) => {
+    const raw = index - activeIndex;
+    const half = Math.floor(cards.length / 2);
+    if (raw > half) return raw - cards.length;
+    if (raw < -half) return raw + cards.length;
+    return raw;
+  };
+
+  const sync = () => {
+    cards.forEach((card, index) => {
+      const offset = wrappedOffset(index);
+      const active = index === activeIndex;
+      const visible = Math.abs(offset) <= 2;
+      card.dataset.offset = String(offset);
+      card.dataset.active = active ? "true" : "false";
+      card.setAttribute("aria-hidden", visible ? "false" : "true");
+      card.tabIndex = visible ? 0 : -1;
+    });
+
+    const activeCard = cards[activeIndex];
+    if (activeCard) {
+      if (meta.category) meta.category.textContent = activeCard.dataset.category || "";
+      if (meta.title) meta.title.textContent = activeCard.dataset.title || "";
+      if (meta.summary) meta.summary.textContent = activeCard.dataset.summary || "";
+    }
+  };
+
+  const openPreview = (card) => {
+    const overlay = document.createElement("div");
+    overlay.className = "designPreviewLightbox";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-label", (card.dataset.title || "设计作品") + " 大图预览");
+    overlay.innerHTML = '<button class="designPreviewClose" type="button" aria-label="关闭大图预览"><span aria-hidden="true">×</span></button><figure class="designPreviewFigure"><img alt=""><figcaption><strong></strong><span></span></figcaption></figure>';
+    const image = overlay.querySelector("img");
+    const title = overlay.querySelector("strong");
+    const category = overlay.querySelector("figcaption span");
+    if (image) {
+      image.src = card.dataset.image || "";
+      image.alt = card.dataset.title || "";
+    }
+    if (title) title.textContent = card.dataset.title || "";
+    if (category) category.textContent = card.dataset.category || "";
+
+    const close = () => {
+      document.body.style.overflow = "";
+      overlay.remove();
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") close();
+    };
+
+    overlay.addEventListener("click", close);
+    overlay.querySelector(".designPreviewClose")?.addEventListener("click", close);
+    overlay.querySelector(".designPreviewFigure")?.addEventListener("click", (event) => event.stopPropagation());
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = "hidden";
+    document.body.appendChild(overlay);
+  };
+
+  previous?.addEventListener("click", () => {
+    activeIndex = (activeIndex - 1 + cards.length) % cards.length;
+    sync();
+  });
+  next?.addEventListener("click", () => {
+    activeIndex = (activeIndex + 1) % cards.length;
+    sync();
+  });
+  cards.forEach((card, index) => {
+    card.addEventListener("click", () => {
+      if (index === activeIndex) {
+        openPreview(card);
+        return;
+      }
+      activeIndex = index;
+      sync();
+    });
+  });
+
+  window.setTimeout(() => {
+    cards.forEach((card) => {
+      card.dataset.introDone = "true";
+    });
+  }, 760);
+  sync();
+})();
+          `.trim(),
+        }}
+      />
     </div>
   );
 }
