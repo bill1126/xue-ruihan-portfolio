@@ -13,7 +13,7 @@ export default function WorkPage() {
   const detailHrefFor = (href: string) => {
     const group = workImageGroups.find((item) => item.href === href);
 
-    return group ? `${href}#${group.id}` : href;
+    return group ? `${href}/#${group.id}` : href;
   };
 
   const workItems = [
