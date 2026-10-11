@@ -6,6 +6,7 @@ import WorkHashScroller from "../../components/WorkHashScroller";
 import WorkSequenceNav from "../../components/WorkSequenceNav";
 import { experiences } from "../../experiences";
 import { workImageGroups } from "../../workImageGroups";
+import { assetPath } from "../../assetPath";
 
 type ExperiencePageProps = {
   params: Promise<{
@@ -228,7 +229,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                 </header>
                 {group.images.map((image) => (
                   <figure className="caseImageOnlyFrame" key={image.src}>
-                    <img src={image.src} alt={image.alt} width={image.width} height={image.height} />
+                    <img src={assetPath(image.src)} alt={image.alt} width={image.width} height={image.height} />
                   </figure>
                 ))}
               </article>
@@ -261,7 +262,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
           <aside className="gameDeliveryPanel" aria-label="AI 小游戏交付预览">
             {content.heroImage ? (
               <figure className="caseHeroImageFrame">
-                <img src={content.heroImage} alt={content.heroImageAlt} />
+                  <img src={assetPath(content.heroImage)} alt={content.heroImageAlt} />
               </figure>
             ) : (
               <>
@@ -310,7 +311,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                   <p>{section.body}</p>
                 </div>
                 <figure className="caseVisualImageFrame">
-                  <img src={section.image} alt={section.alt} />
+                  <img src={assetPath(section.image)} alt={section.alt} />
                 </figure>
               </article>
             ))}

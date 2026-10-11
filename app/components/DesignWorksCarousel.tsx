@@ -1,3 +1,5 @@
+import { assetPath } from "../assetPath";
+
 type DesignWork = {
   title: string;
   category: string;
@@ -9,6 +11,7 @@ type DesignWork = {
 type DesignWorksCarouselProps = {
   items: readonly DesignWork[];
 };
+
 
 function getWrappedOffset(index: number, active: number, length: number) {
   const raw = index - active;
@@ -59,7 +62,7 @@ export default function DesignWorksCarousel({ items }: DesignWorksCarouselProps)
                 data-title={item.title}
                 data-category={item.category}
                 data-summary={item.summary}
-                data-image={item.image}
+                data-image={assetPath(item.image)}
                 data-offset={offset}
                 data-active={isActive ? "true" : "false"}
                 data-intro-done="false"
@@ -69,7 +72,7 @@ export default function DesignWorksCarousel({ items }: DesignWorksCarouselProps)
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={item.image}
+                  src={assetPath(item.image)}
                   alt={item.title}
                   loading={isActive ? "eager" : "lazy"}
                   fetchPriority={isActive ? "high" : "auto"}
@@ -103,105 +106,177 @@ export default function DesignWorksCarousel({ items }: DesignWorksCarouselProps)
         dangerouslySetInnerHTML={{
           __html: `
 (() => {
-  const root = document.currentScript?.closest("[data-design-carousel]");
-  if (!root) return;
+  const getCarouselState = (root) => root.__designCarouselState;
 
-  const cards = Array.from(root.querySelectorAll("[data-index]"));
-  const previous = root.querySelector("[data-carousel-previous]");
-  const next = root.querySelector("[data-carousel-next]");
-  const meta = {
-    category: root.querySelector("[data-carousel-meta-category]"),
-    title: root.querySelector("[data-carousel-meta-title]"),
-    summary: root.querySelector("[data-carousel-meta-summary]"),
-  };
-  let activeIndex = ${featuredIndex};
+  const initializeCarousel = (root) => {
+    if (root.dataset.carouselInitialized === "true") return;
+    root.dataset.carouselInitialized = "true";
 
-  const wrappedOffset = (index) => {
-    const raw = index - activeIndex;
-    const half = Math.floor(cards.length / 2);
-    if (raw > half) return raw - cards.length;
-    if (raw < -half) return raw + cards.length;
-    return raw;
-  };
-
-  const sync = () => {
-    cards.forEach((card, index) => {
-      const offset = wrappedOffset(index);
-      const active = index === activeIndex;
-      const visible = Math.abs(offset) <= 2;
-      card.dataset.offset = String(offset);
-      card.dataset.active = active ? "true" : "false";
-      card.setAttribute("aria-hidden", visible ? "false" : "true");
-      card.tabIndex = visible ? 0 : -1;
-    });
-
-    const activeCard = cards[activeIndex];
-    if (activeCard) {
-      if (meta.category) meta.category.textContent = activeCard.dataset.category || "";
-      if (meta.title) meta.title.textContent = activeCard.dataset.title || "";
-      if (meta.summary) meta.summary.textContent = activeCard.dataset.summary || "";
-    }
-  };
-
-  const openPreview = (card) => {
-    const overlay = document.createElement("div");
-    overlay.className = "designPreviewLightbox";
-    overlay.setAttribute("role", "dialog");
-    overlay.setAttribute("aria-modal", "true");
-    overlay.setAttribute("aria-label", (card.dataset.title || "设计作品") + " 大图预览");
-    overlay.innerHTML = '<button class="designPreviewClose" type="button" aria-label="关闭大图预览"><span aria-hidden="true">×</span></button><figure class="designPreviewFigure"><img alt=""><figcaption><strong></strong><span></span></figcaption></figure>';
-    const image = overlay.querySelector("img");
-    const title = overlay.querySelector("strong");
-    const category = overlay.querySelector("figcaption span");
-    if (image) {
-      image.src = card.dataset.image || "";
-      image.alt = card.dataset.title || "";
-    }
-    if (title) title.textContent = card.dataset.title || "";
-    if (category) category.textContent = card.dataset.category || "";
-
-    const close = () => {
-      document.body.style.overflow = "";
-      overlay.remove();
-      document.removeEventListener("keydown", closeOnEscape);
+    const cards = Array.from(root.querySelectorAll("[data-index]"));
+    const previous = root.querySelector("[data-carousel-previous]");
+    const next = root.querySelector("[data-carousel-next]");
+    const meta = {
+      category: root.querySelector("[data-carousel-meta-category]"),
+      title: root.querySelector("[data-carousel-meta-title]"),
+      summary: root.querySelector("[data-carousel-meta-summary]"),
     };
-    const closeOnEscape = (event) => {
-      if (event.key === "Escape") close();
+    let activeIndex = ${featuredIndex};
+
+    const wrappedOffset = (index) => {
+      const raw = index - activeIndex;
+      const half = Math.floor(cards.length / 2);
+      if (raw > half) return raw - cards.length;
+      if (raw < -half) return raw + cards.length;
+      return raw;
     };
 
-    overlay.addEventListener("click", close);
-    overlay.querySelector(".designPreviewClose")?.addEventListener("click", close);
-    overlay.querySelector(".designPreviewFigure")?.addEventListener("click", (event) => event.stopPropagation());
-    document.addEventListener("keydown", closeOnEscape);
-    document.body.style.overflow = "hidden";
-    document.body.appendChild(overlay);
-  };
+    const sync = () => {
+      cards.forEach((card, index) => {
+        const offset = wrappedOffset(index);
+        const active = index === activeIndex;
+        const visible = Math.abs(offset) <= 2;
+        card.dataset.offset = String(offset);
+        card.dataset.active = active ? "true" : "false";
+        card.setAttribute("aria-hidden", visible ? "false" : "true");
+        card.tabIndex = visible ? 0 : -1;
+      });
 
-  previous?.addEventListener("click", () => {
-    activeIndex = (activeIndex - 1 + cards.length) % cards.length;
-    sync();
-  });
-  next?.addEventListener("click", () => {
-    activeIndex = (activeIndex + 1) % cards.length;
-    sync();
-  });
-  cards.forEach((card, index) => {
-    card.addEventListener("click", () => {
-      if (index === activeIndex) {
-        openPreview(card);
-        return;
+      const activeCard = cards[activeIndex];
+      if (activeCard) {
+        if (meta.category) meta.category.textContent = activeCard.dataset.category || "";
+        if (meta.title) meta.title.textContent = activeCard.dataset.title || "";
+        if (meta.summary) meta.summary.textContent = activeCard.dataset.summary || "";
       }
-      activeIndex = index;
+    };
+
+    const openPreview = (card) => {
+      const overlay = document.createElement("div");
+      overlay.className = "designPreviewLightbox";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-label", (card.dataset.title || "设计作品") + " 大图预览");
+      overlay.innerHTML = '<button class="designPreviewClose" type="button" aria-label="关闭大图预览"><span aria-hidden="true">×</span></button><figure class="designPreviewFigure"><img alt=""><figcaption><strong></strong><span></span></figcaption></figure>';
+      const image = overlay.querySelector("img");
+      const title = overlay.querySelector("strong");
+      const category = overlay.querySelector("figcaption span");
+      if (image) {
+        image.src = card.dataset.image || "";
+        image.alt = card.dataset.title || "";
+      }
+      if (title) title.textContent = card.dataset.title || "";
+      if (category) category.textContent = card.dataset.category || "";
+
+      const close = () => {
+        document.body.style.overflow = "";
+        overlay.remove();
+        document.removeEventListener("keydown", closeOnEscape);
+      };
+      const closeOnEscape = (event) => {
+        if (event.key === "Escape") close();
+      };
+
+      overlay.addEventListener("click", close);
+      overlay.querySelector(".designPreviewClose")?.addEventListener("click", close);
+      overlay.querySelector(".designPreviewFigure")?.addEventListener("click", (event) => event.stopPropagation());
+      document.addEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "hidden";
+      document.body.appendChild(overlay);
+    };
+
+    previous?.addEventListener("click", () => {
+      activeIndex = (activeIndex - 1 + cards.length) % cards.length;
       sync();
     });
-  });
-
-  window.setTimeout(() => {
-    cards.forEach((card) => {
-      card.dataset.introDone = "true";
+    next?.addEventListener("click", () => {
+      activeIndex = (activeIndex + 1) % cards.length;
+      sync();
     });
-  }, 760);
-  sync();
+    cards.forEach((card, index) => {
+      card.addEventListener("click", () => {
+        if (index === activeIndex) {
+          openPreview(card);
+          return;
+        }
+        activeIndex = index;
+        sync();
+      });
+    });
+
+    root.__designCarouselState = {
+      showPrevious: () => {
+        activeIndex = (activeIndex - 1 + cards.length) % cards.length;
+        sync();
+      },
+      showNext: () => {
+        activeIndex = (activeIndex + 1) % cards.length;
+        sync();
+      },
+      showCard: (card) => {
+        const index = cards.indexOf(card);
+        if (index < 0) return;
+        if (index === activeIndex) {
+          openPreview(card);
+          return;
+        }
+        activeIndex = index;
+        sync();
+      },
+    };
+
+    window.setTimeout(() => {
+      cards.forEach((card) => {
+        card.dataset.introDone = "true";
+      });
+    }, 760);
+    sync();
+  };
+
+  if (!window.__designCarouselClickBound) {
+    window.__designCarouselClickBound = true;
+    document.addEventListener(
+      "click",
+      (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const control = target.closest("[data-carousel-previous], [data-carousel-next], .designWorkCard");
+        const root = control?.closest("[data-design-carousel]");
+        if (!control || !root) return;
+
+        initializeCarousel(root);
+        const state = getCarouselState(root);
+        if (!state) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (control.matches("[data-carousel-previous]")) {
+          state.showPrevious();
+          return;
+        }
+        if (control.matches("[data-carousel-next]")) {
+          state.showNext();
+          return;
+        }
+        state.showCard(control);
+      },
+      true,
+    );
+  }
+
+  const initializeAllCarousels = () => {
+    document.querySelectorAll("[data-design-carousel]").forEach(initializeCarousel);
+  };
+
+  const scheduleInitializeAllCarousels = () => {
+    window.setTimeout(initializeAllCarousels, 150);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scheduleInitializeAllCarousels, { once: true });
+  } else {
+    scheduleInitializeAllCarousels();
+  }
+  window.addEventListener("load", scheduleInitializeAllCarousels, { once: true });
 })();
           `.trim(),
         }}

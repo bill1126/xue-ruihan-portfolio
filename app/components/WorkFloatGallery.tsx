@@ -1,3 +1,5 @@
+import { assetPath } from "../assetPath";
+
 type WorkItem = {
   type: string;
   time: string;
@@ -15,7 +17,7 @@ export default function WorkFloatGallery({ items }: WorkFloatGalleryProps) {
   return (
     <div className="workFloatTrack" aria-label="实习和项目经历卡片">
       {items.map((item, index) => (
-        <a className="workFloatCard" href={item.href} key={item.href}>
+        <a className="workFloatCard" href={assetPath(item.href)} key={item.href}>
           <div className="workFloatTop">
             <span>{String(index + 1).padStart(2, "0")}/05</span>
             <strong>{item.type}</strong>

@@ -6,6 +6,7 @@ import WorkHashScroller from "../../components/WorkHashScroller";
 import WorkSequenceNav from "../../components/WorkSequenceNav";
 import { projects } from "../../projects";
 import { workImageGroups } from "../../workImageGroups";
+import { assetPath } from "../../assetPath";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -63,7 +64,7 @@ function WorkSequenceImageGallery({ activeHref }: { activeHref: string }) {
             </header>
             {group.images.map((image) => (
               <figure className="caseImageOnlyFrame" key={image.src}>
-                <img src={image.src} alt={image.alt} width={image.width} height={image.height} />
+                <img src={assetPath(image.src)} alt={image.alt} width={image.width} height={image.height} />
               </figure>
             ))}
           </article>

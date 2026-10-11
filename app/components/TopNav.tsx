@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { assetPath } from "../assetPath";
 
 type TopNavProps = {
   active?: "home" | "campus" | "work" | "design" | "skills" | "contact";
@@ -16,7 +17,7 @@ const navItems = [
 export default function TopNav({ active = "home" }: TopNavProps) {
   return (
     <header className="topNavShell">
-      <Link className="topNavBrand" href="/" aria-label="返回首页">
+      <Link className="topNavBrand" href={assetPath("/")} aria-label="返回首页">
         <span aria-hidden="true">R</span>
         <strong>PORTFOLIO</strong>
       </Link>
@@ -25,7 +26,7 @@ export default function TopNav({ active = "home" }: TopNavProps) {
         {navItems.map((item) => (
           <Link
             className={active === item.key ? "isActive" : undefined}
-            href={item.href}
+            href={assetPath(item.href)}
             key={item.key}
           >
             {item.label}

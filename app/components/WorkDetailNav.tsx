@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import type { MouseEvent } from "react";
 import { experiences } from "../experiences";
 import { projects } from "../projects";
+import { assetPath } from "../assetPath";
 
 type WorkDetailNavProps = {
   activeHref: string;
@@ -64,16 +65,16 @@ export default function WorkDetailNav({ activeHref }: WorkDetailNavProps) {
     document.documentElement.classList.remove("workDetailExitToLeft", "workDetailExitToRight");
     document.documentElement.classList.add(exitClass);
     window.setTimeout(() => {
-      router.push(href);
+      router.push(assetPath(href));
     }, 430);
   }
 
   return (
     <>
       <div className="workDetailReturn">
-        <Link href="/work" aria-label="返回全部实习和项目经历">
+        <Link href={assetPath("/work")} aria-label="返回全部实习和项目经历">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/work-return-button.webp" alt="" aria-hidden="true" />
+          <img src={assetPath("/work-return-button.webp")} alt="" aria-hidden="true" />
         </Link>
       </div>
 
@@ -81,23 +82,23 @@ export default function WorkDetailNav({ activeHref }: WorkDetailNavProps) {
         {previousItem ? (
           <Link
             className="workDetailArrow workDetailArrowPrevious"
-            href={previousItem.href}
+            href={assetPath(previousItem.href)}
             aria-label={`查看上一项：${previousItem.label}`}
             onClick={(event) => switchWorkItem(event, previousItem.href, "left")}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/work-switch-left.webp" alt="" aria-hidden="true" />
+            <img src={assetPath("/work-switch-left.webp")} alt="" aria-hidden="true" />
           </Link>
         ) : null}
         {nextItem ? (
           <Link
             className="workDetailArrow workDetailArrowNext"
-            href={nextItem.href}
+            href={assetPath(nextItem.href)}
             aria-label={`查看下一项：${nextItem.label}`}
             onClick={(event) => switchWorkItem(event, nextItem.href, "right")}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/work-switch-right.webp" alt="" aria-hidden="true" />
+            <img src={assetPath("/work-switch-right.webp")} alt="" aria-hidden="true" />
           </Link>
         ) : null}
       </nav>

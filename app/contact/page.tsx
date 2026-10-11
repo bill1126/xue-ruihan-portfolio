@@ -1,5 +1,6 @@
 import TopNav from "../components/TopNav";
 import ContactActions from "../components/ContactActions";
+import { assetPath } from "../assetPath";
 
 export const metadata = {
   title: "联系方式 | 薛瑞涵",
@@ -44,7 +45,7 @@ export default function ContactPage() {
               key={hobby.name}
               type="button"
             >
-              <img src={hobby.src} alt="" />
+              <img src={assetPath(hobby.src)} alt="" />
             </button>
           ))}
         </div>

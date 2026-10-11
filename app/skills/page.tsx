@@ -1,6 +1,7 @@
 import Image from "next/image";
 import TopNav from "../components/TopNav";
 import { skills } from "../skills";
+import { assetPath } from "../assetPath";
 
 export const metadata = {
   title: "专业技能 | 薛瑞涵",
@@ -24,7 +25,7 @@ export default function SkillsPage() {
               </div>
               <Image
                 className="skillFolderIcon"
-                src={group.iconSrc}
+                src={assetPath(group.iconSrc)}
                 alt=""
                 aria-hidden="true"
                 width={96}
@@ -37,22 +38,22 @@ export default function SkillsPage() {
             <div className="skillFolderChips">
               <img
                 className="skillFolderBubble"
-                src={group.folderSrc}
+                src={assetPath(group.folderSrc)}
                 alt=""
                 aria-hidden="true"
               />
               <h2>{group.group}</h2>
               {group.tone === "ink" ? (
                 <div className="skillFolderToolStack" aria-hidden="true">
-                  <img src="/skill-inserts/claude.webp" alt="" />
-                  <img src="/skill-inserts/codex.webp" alt="" />
-                  <img src="/skill-inserts/cursor.webp" alt="" />
+                  <img src={assetPath("/skill-inserts/claude.webp")} alt="" />
+                  <img src={assetPath("/skill-inserts/codex.webp")} alt="" />
+                  <img src={assetPath("/skill-inserts/cursor.webp")} alt="" />
                 </div>
               ) : null}
               {group.tone === "paper" ? (
                 <img
                   className="skillFolderEvalInsert"
-                  src="/skill-inserts/eval-table.webp"
+                  src={assetPath("/skill-inserts/eval-table.webp")}
                   alt=""
                   aria-hidden="true"
                 />
@@ -61,12 +62,12 @@ export default function SkillsPage() {
                 <div className="skillFolderProductInserts" aria-hidden="true">
                   <img
                     className="skillFolderFigmaInsert"
-                    src="/skill-inserts/figma.webp"
+                    src={assetPath("/skill-inserts/figma.webp")}
                     alt=""
                   />
                   <img
                     className="skillFolderDocInsert skillFolderPrdInsert"
-                    src="/skill-inserts/prd-doc.svg"
+                    src={assetPath("/skill-inserts/prd-doc.svg")}
                     alt=""
                   />
                 </div>
@@ -74,7 +75,7 @@ export default function SkillsPage() {
               {group.tone === "cyan" ? (
                 <img
                   className="skillFolderDocInsert skillFolderCertificateInsert"
-                  src="/skill-inserts/certificate.svg"
+                  src={assetPath("/skill-inserts/certificate.svg")}
                   alt=""
                   aria-hidden="true"
                 />

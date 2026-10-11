@@ -1,4 +1,5 @@
 import TopNav from "./components/TopNav";
+import { assetPath } from "./assetPath";
 
 export default function Home() {
   return (
@@ -32,7 +33,7 @@ export default function Home() {
                 <svg className="homeInfoIcon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 3.8 14.2 9l5.4 1.1-4.1 3.7.6 5.5L12 16.6l-4.1 2.7.6-5.5-4.1-3.7L9.8 9 12 3.8Z" />
                 </svg>
-                AI 产品经理 / 产品实习
+                AI产品经理/产品经理
               </span>
             </div>
             <p className="introNote">
@@ -43,9 +44,9 @@ export default function Home() {
           <aside className="profilePanel" aria-label="Profile summary">
             <span className="photoBadge">about me</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/profile-casual.webp" alt="薛瑞涵个人照片" />
+            <img src={assetPath("/profile-casual.webp")} alt="薛瑞涵个人照片" />
             <div>
-              <p className="profileName">AI 产品经理 / 产品实习</p>
+              <p className="profileName">AI产品经理/产品经理</p>
               <p>北京 | 2002.11 | 中共党员</p>
             </div>
           </aside>

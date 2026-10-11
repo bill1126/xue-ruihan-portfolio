@@ -1,6 +1,7 @@
 import Link from "next/link";
 import TopNav from "../components/TopNav";
 import { experiences } from "../experiences";
+import { assetPath } from "../assetPath";
 
 export const metadata = {
   title: "实习经历 | 薛瑞涵",
@@ -24,7 +25,7 @@ export default function ExperiencesPage() {
         {experiences.map((item) => (
           <Link
             className="experienceCard"
-            href={`/experiences/${item.slug}`}
+            href={assetPath(`/experiences/${item.slug}`)}
             key={item.company}
           >
             <span className="projectIndex">{item.index}</span>

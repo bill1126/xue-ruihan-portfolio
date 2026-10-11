@@ -150,8 +150,8 @@
   .topNavLinks a {
     min-height: 32px;
     flex: 0 0 auto;
-    padding: 0 12px;
-    font-size: 12px;
+    padding: 0 9px;
+    font-size: 11.5px;
   }
 
   .hero,
@@ -163,6 +163,522 @@
 
   .workFloatPage {
     padding-top: 90px;
+  }
+}
+
+.pdfPortfolio {
+  min-height: 100vh;
+  padding: 32px 0;
+  background: #dfe7df;
+  color: #172033;
+  font-family: var(--font-geist-sans), "PingFang SC", "Microsoft YaHei", Arial,
+    sans-serif;
+}
+
+.pdfPage {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 24px;
+  padding: 18mm;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(251, 252, 248, 0.98)),
+    #ffffff;
+  box-shadow: 0 18px 60px rgba(23, 32, 51, 0.16);
+  page-break-after: always;
+  break-after: page;
+}
+
+.pdfPage:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+.pdfCover {
+  display: grid;
+  grid-template-columns: 1fr 60mm;
+  gap: 15mm;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 16% 14%, rgba(159, 208, 231, 0.34), transparent 31%),
+    radial-gradient(circle at 85% 18%, rgba(185, 215, 172, 0.36), transparent 30%),
+    linear-gradient(135deg, #fbfcf8 0%, #f2f7f5 55%, #f8f2ed 100%);
+}
+
+.pdfKicker,
+.pdfSectionTitle span,
+.pdfProjectCard span,
+.pdfDesignCard span,
+.pdfEducationCard > span,
+.pdfTimelineItem span,
+.pdfFactGrid span,
+.pdfSkillCard > span {
+  display: block;
+  color: #4b93b8;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pdfCover h1 {
+  margin: 8px 0 16px;
+  color: #172033;
+  font-size: 56px;
+  font-weight: 950;
+  line-height: 0.95;
+}
+
+.pdfLead {
+  margin: 0;
+  color: #253044;
+  font-size: 20px;
+  font-weight: 760;
+  line-height: 1.62;
+}
+
+.pdfContactLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.pdfContactLine span {
+  border: 1px solid rgba(23, 32, 51, 0.12);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #3c485a;
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.pdfPortrait {
+  position: relative;
+  padding: 8px;
+  border: 1px solid rgba(23, 32, 51, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.pdfPortrait::before {
+  content: "about me";
+  position: absolute;
+  top: -18px;
+  left: -14px;
+  border-radius: 999px;
+  padding: 8px 18px;
+  background: #172033;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.pdfPortrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 0.78 / 1;
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: center 43%;
+}
+
+.pdfSectionTitle {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(23, 32, 51, 0.14);
+  padding-bottom: 10px;
+}
+
+.pdfSectionTitle h2 {
+  margin: 0;
+  color: #172033;
+  font-size: 25px;
+  font-weight: 920;
+  line-height: 1.1;
+}
+
+.pdfTwoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 12mm;
+  margin-bottom: 18mm;
+}
+
+.pdfStatement,
+.pdfFactGrid article,
+.pdfSkillCard,
+.pdfTimelineItem,
+.pdfProjectCard,
+.pdfDesignCard,
+.pdfEducationCard {
+  border: 1px solid rgba(23, 32, 51, 0.11);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.pdfStatement {
+  padding: 16px;
+}
+
+.pdfStatement h3,
+.pdfSkillCard h3,
+.pdfTimelineItem h3,
+.pdfProjectCard h3,
+.pdfDesignCard h3,
+.pdfEducationCard h3 {
+  margin: 0;
+  color: #172033;
+  font-size: 15px;
+  font-weight: 880;
+  line-height: 1.35;
+}
+
+.pdfStatement p,
+.pdfSkillCard p,
+.pdfProjectCard p,
+.pdfDesignCard p,
+.pdfEducationCard p,
+.pdfTimelineItem li,
+.pdfEducationCard li {
+  color: #3d4858;
+  font-size: 10.6px;
+  line-height: 1.65;
+}
+
+.pdfStatement p {
+  margin: 10px 0 0;
+  font-size: 12px;
+}
+
+.pdfFactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pdfFactGrid article {
+  display: grid;
+  gap: 7px;
+  padding: 12px;
+}
+
+.pdfFactGrid strong {
+  color: #172033;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.pdfSkillGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.pdfSkillCard {
+  padding: 14px;
+}
+
+.pdfSkillCard p {
+  margin: 8px 0 12px;
+}
+
+.pdfSkillCard div,
+.pdfProjectCard dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pdfSkillCard em {
+  border-radius: 999px;
+  padding: 4px 7px;
+  background: #eef5f7;
+  color: #31566a;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 760;
+}
+
+.pdfTimeline {
+  display: grid;
+  gap: 10px;
+}
+
+.pdfTimelineItem {
+  display: grid;
+  grid-template-columns: 42mm 1fr;
+  gap: 12px;
+  padding: 14px;
+  break-inside: avoid;
+}
+
+.pdfTimelineItem strong,
+.pdfTimelineItem small {
+  display: block;
+}
+
+.pdfTimelineItem strong {
+  margin: 8px 0 4px;
+  color: #172033;
+  font-size: 15px;
+  font-weight: 880;
+}
+
+.pdfTimelineItem small {
+  color: #6d7787;
+  font-size: 10px;
+  font-weight: 760;
+  line-height: 1.4;
+}
+
+.pdfTimelineItem ul,
+.pdfEducationCard ul {
+  margin: 8px 0 0;
+  padding-left: 16px;
+}
+
+.pdfProjectGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.pdfProjectCard {
+  display: grid;
+  grid-template-columns: 55mm 1fr;
+  gap: 14px;
+  padding: 12px;
+  break-inside: avoid;
+}
+
+.pdfProjectCard img,
+.pdfDesignCard img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #eef2ee;
+}
+
+.pdfProjectCard img {
+  aspect-ratio: 1.25 / 1;
+}
+
+.pdfProjectCard h3,
+.pdfDesignCard h3 {
+  margin-top: 5px;
+}
+
+.pdfProjectCard p,
+.pdfDesignCard p {
+  margin: 7px 0 10px;
+}
+
+.pdfProjectCard dl {
+  margin: 0;
+}
+
+.pdfProjectCard dl div {
+  flex: 1 1 140px;
+  border-left: 2px solid #b9d7ac;
+  padding-left: 8px;
+}
+
+.pdfProjectCard dt {
+  color: #6d7787;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.pdfProjectCard dd {
+  margin: 3px 0 0;
+  color: #3d4858;
+  font-size: 9.4px;
+  line-height: 1.55;
+}
+
+.pdfDesignGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.pdfDesignCard {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  gap: 10px;
+  padding: 10px;
+  break-inside: avoid;
+}
+
+.pdfDesignCard img {
+  aspect-ratio: 1.1 / 1;
+}
+
+.pdfEducationGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pdfEducationCard {
+  padding: 14px;
+  break-inside: avoid;
+}
+
+.pdfEducationCard strong {
+  display: block;
+  margin: 5px 0 8px;
+  color: #4b5667;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.pdfEducationCard p {
+  margin: 0 0 8px;
+}
+
+.pdfEducationCard li {
+  margin-bottom: 6px;
+}
+
+.pdfEducationCard li b,
+.pdfEducationCard li span {
+  display: block;
+}
+
+.pdfEducationCard li b {
+  color: #172033;
+}
+
+.pdfFooter {
+  display: grid;
+  gap: 8px;
+  margin-top: 18mm;
+  border-radius: 8px;
+  padding: 16px;
+  background: #172033;
+  color: #ffffff;
+}
+
+.pdfFooter strong {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.pdfFooter span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 210mm;
+    background: #ffffff !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .pdfPortfolio {
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .pdfPage {
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    margin: 0;
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  .pdfCover,
+  .pdfTwoColumn,
+  .pdfProjectCard,
+  .pdfDesignCard,
+  .pdfTimelineItem,
+  .pdfEducationGrid {
+    display: flex;
+  }
+
+  .pdfCover {
+    align-items: center;
+  }
+
+  .pdfCoverCopy {
+    flex: 1 1 auto;
+  }
+
+  .pdfPortrait {
+    flex: 0 0 60mm;
+  }
+
+  .pdfTwoColumn > * {
+    flex: 1 1 0;
+  }
+
+  .pdfTimelineItem > :first-child {
+    flex: 0 0 42mm;
+  }
+
+  .pdfTimelineItem > :last-child,
+  .pdfProjectCard > div,
+  .pdfDesignCard > div {
+    flex: 1 1 auto;
+  }
+
+  .pdfProjectCard img {
+    flex: 0 0 55mm;
+    width: 55mm;
+  }
+
+  .pdfDesignCard img {
+    flex: 0 0 45%;
+    width: 45%;
+  }
+
+  .pdfEducationCard {
+    flex: 1 1 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .pdfPortfolio {
+    padding: 0;
+  }
+
+  .pdfPage {
+    width: 100%;
+    min-height: auto;
+    margin-bottom: 12px;
+    padding: 24px;
+  }
+
+  .pdfCover,
+  .pdfTwoColumn,
+  .pdfTimelineItem,
+  .pdfProjectCard,
+  .pdfEducationGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pdfDesignGrid,
+  .pdfSkillGrid,
+  .pdfFactGrid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2611,7 +3127,7 @@ h1 {
   position: absolute;
   z-index: 6;
   top: 22px;
-  left: 24px;
+  left: 50%;
   border-radius: 999px;
   padding: 9px 16px;
   background: rgba(255, 255, 255, 0.76);
@@ -2621,6 +3137,8 @@ h1 {
   font-style: normal;
   font-weight: 800;
   box-shadow: 0 12px 26px rgba(31, 50, 71, 0.08);
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
 .hobbySticker {
@@ -2839,7 +3357,7 @@ h1 {
 .contactInfoGrid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(260px, 1.35fr) minmax(170px, 0.95fr) minmax(120px, 0.7fr);
   gap: 12px;
   margin-top: 4px;
 }
@@ -2870,6 +3388,11 @@ h1 {
   overflow-wrap: anywhere;
 }
 
+.contactInfoGrid a[href^="mailto"] strong {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
 .contactClosing {
   margin: 8px 0 0;
   color: var(--ink);
@@ -2897,10 +3420,107 @@ h1 {
     max-width: 620px;
     margin: 0 auto;
     aspect-ratio: 1 / 0.82;
+    justify-self: center;
+    transform: none;
+    transform-origin: center;
+  }
+
+  .contactCollage span {
+    top: 16px;
+  }
+
+  .hobbySticker.tableTennis {
+    top: 14%;
+    left: 3%;
+    width: 30%;
+  }
+
+  .hobbySticker.calligraphy {
+    top: 3%;
+    right: 8%;
+    width: 29%;
+  }
+
+  .hobbySticker.swimming {
+    top: 33%;
+    right: 2%;
+    width: 30%;
+  }
+
+  .hobbySticker.badminton {
+    bottom: 6%;
+    left: 8%;
+    width: 29%;
+  }
+
+  .hobbySticker.erhu {
+    bottom: 28%;
+    left: 35%;
+    width: 29%;
+  }
+
+  .hobbySticker.piano {
+    right: 7%;
+    bottom: 0;
+    width: 29%;
   }
 
   .contactInfoGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .contactCollage {
+    width: min(82vw, 620px);
+    max-width: 620px;
+    justify-self: center;
+    margin-right: auto;
+    margin-left: auto;
+    aspect-ratio: 1 / 0.9;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .contactCollage span {
+    top: 18px;
+    font-size: 17px;
+  }
+
+  .hobbySticker.tableTennis {
+    top: 16%;
+    left: 6%;
+    width: 26%;
+  }
+
+  .hobbySticker.calligraphy {
+    top: 6%;
+    right: 20%;
+    width: 23%;
+  }
+
+  .hobbySticker.swimming {
+    top: 35%;
+    right: 17%;
+    width: 24%;
+  }
+
+  .hobbySticker.badminton {
+    bottom: 8%;
+    left: 9%;
+    width: 25%;
+  }
+
+  .hobbySticker.erhu {
+    bottom: 28%;
+    left: 36%;
+    width: 25%;
+  }
+
+  .hobbySticker.piano {
+    right: 18%;
+    bottom: 3%;
+    width: 24%;
   }
 }
 
@@ -3925,9 +4545,9 @@ h1 {
 .workFloatPage {
   min-height: 100vh;
   display: grid;
-  gap: 24px;
+  gap: 0;
   overflow: visible;
-  padding: 62px 0 56px;
+  padding: 168px 0 56px;
 }
 
 .workFloatHeader {
@@ -6402,6 +7022,32 @@ h1 {
 @media (min-width: 1100px) and (max-height: 920px) {
   .campusEducationContent h2 {
     font-size: clamp(1.75rem, 2.55vw, 2.85rem);
+  }
+}
+
+/* Campus placement after removing the page title */
+@media (min-width: 921px) {
+  .campusPage {
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    padding: 96px clamp(24px, 5vw, 72px) 42px;
+  }
+
+  .campusEducationList {
+    width: min(1320px, 100%);
+    margin: 0 auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .campusEducationItem,
+  .campusEducationItem:nth-child(2),
+  .campusEducationItem:nth-child(2):hover {
+    height: min(520px, 48vh);
+    min-height: 420px;
+    margin-top: 0;
   }
 }
 
@@ -9838,5 +10484,583 @@ h1 {
     min-height: 28px;
     padding: 0 12px;
     font-size: 12px;
+  }
+}
+
+/* Mobile fit pass: keep the expressive layouts, but remove horizontal spill. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 760px) {
+  .topNavShell {
+    width: calc(100vw - 24px);
+    left: 12px;
+    right: 12px;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    border-radius: 999px;
+    transform: none !important;
+  }
+
+  .topNavLinks {
+    min-width: 0;
+    flex-wrap: nowrap;
+    justify-self: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 999px;
+    scrollbar-width: none;
+  }
+
+  .topNavLinks::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topNavLinks a {
+    min-height: 32px;
+    flex: 0 0 auto;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .hero,
+  .folderPage:not(.workPageSimple),
+  .projectDetail,
+  .campusPage,
+  .workFloatPage {
+    padding-top: 88px;
+  }
+
+  .homeDesktop,
+  .hero {
+    width: 100%;
+    min-height: 100svh;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .introHero {
+    align-items: start;
+    padding-bottom: 44px;
+  }
+
+  .introHero .heroGrid {
+    width: 100%;
+    gap: 34px;
+  }
+
+  .heroCopy,
+  .introHero .heroCopy h1,
+  .introHero .lead,
+  .introNote {
+    max-width: 100%;
+  }
+
+  .introHero .heroCopy::before {
+    top: -30px;
+    width: 42px;
+    height: 42px;
+    background-size: 14px 14px;
+  }
+
+  .introHero .heroCopy::after {
+    display: none;
+  }
+
+  .introHero .scriptName {
+    max-width: 100%;
+    margin-bottom: 8px;
+    font-size: clamp(34px, 10.8vw, 43px);
+    line-height: 0.96;
+    overflow-wrap: normal;
+  }
+
+  .introHero .heroCopy h1 {
+    margin-bottom: 16px;
+    font-size: clamp(39px, 11vw, 46px);
+    line-height: 1.04;
+  }
+
+  .introHero .lead {
+    margin-bottom: 18px;
+    font-size: clamp(17px, 4.7vw, 19px);
+    line-height: 1.52;
+  }
+
+  .introFacts {
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .introFacts span {
+    min-height: 38px;
+    padding: 0 13px;
+    font-size: 13px;
+  }
+
+  .introNote {
+    font-size: 14px;
+    line-height: 1.68;
+  }
+
+  .profilePanel {
+    width: min(100%, 360px);
+    justify-self: center;
+    margin: 16px auto 0;
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .profilePanel img {
+    aspect-ratio: 1 / 1.05;
+  }
+
+  .photoBadge {
+    top: -18px;
+    left: 12px;
+    min-height: 38px;
+    padding: 0 18px;
+    font-size: 21px;
+  }
+
+  .profilePanel p {
+    font-size: 14px;
+  }
+
+  .profileName {
+    font-size: 17px !important;
+  }
+
+  .workFloatHeader,
+  .workFloatTrack,
+  .designWorksHeader,
+  .designCarouselShell,
+  .designCarouselCards,
+  .skillsPage .skillFolderGrid {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .workFloatPage {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .workFloatHeader {
+    width: 100%;
+  }
+
+  .workFloatHeader h1 {
+    font-size: clamp(31px, 8.7vw, 38px);
+  }
+
+  .workFloatTrack {
+    width: 100%;
+  }
+
+  .workFloatTop {
+    flex-wrap: wrap;
+  }
+
+  .workFloatBody {
+    padding: 18px;
+  }
+
+  .folderPage,
+  .skillsPage,
+  .projectsPage {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .projectsPage {
+    height: auto;
+    min-height: 100svh;
+    padding-bottom: 56px;
+  }
+
+  .folderPageHeader h1,
+  .projectsPageHeader h1,
+  .detailHero h1 {
+    font-size: clamp(39px, 11vw, 48px);
+    line-height: 1.04;
+  }
+
+  .folderPageHeader p,
+  .projectsPageHeader p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .pageScript,
+  .projectsPageHeader .pageScript {
+    font-size: clamp(34px, 10vw, 40px);
+    line-height: 1;
+  }
+
+  .projectGrid,
+  .projectFileGrid {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .projectCard,
+  .projectFileCard {
+    width: 100%;
+    min-width: 0;
+    box-shadow: 0 18px 38px rgba(50, 26, 24, 0.08);
+  }
+
+  .projectFileCard:hover {
+    transform: translateY(-4px);
+  }
+
+  .fileHeroLine,
+  .filePreviewGrid,
+  .projectFileCard .tagRow {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .fileHeroLine.hasCover .fileMetaLine {
+    left: 20px;
+    right: 20px;
+  }
+
+  .skillsPage {
+    padding-top: 88px;
+    padding-bottom: 56px;
+  }
+
+  .skillsPage .skillFolderGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin: 0;
+  }
+
+  .skillsPage .skillFolderCard {
+    min-height: 310px;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
+  .skillsPage .skillFolderWhite {
+    inset: 0;
+    padding: 24px 20px;
+  }
+
+  .skillsPage .skillFolderMeta {
+    left: 20px;
+    right: 20px;
+  }
+
+  .skillsPage .skillFolderText {
+    top: 54px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .skillsPage .skillFolderText p {
+    font-size: 13.5px;
+    line-height: 1.48;
+  }
+
+  .skillsPage .skillFolderChips {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    min-height: 154px;
+    gap: 8px;
+    padding: 34px 18px 18px;
+    overflow: hidden;
+  }
+
+  .skillsPage .skillFolderChips h2 {
+    font-size: clamp(25px, 7.8vw, 30px);
+  }
+
+  .skillsPage .skillFolderChips span {
+    max-width: 100%;
+    min-height: 24px;
+    padding: 0 9px;
+    font-size: 11px;
+  }
+
+  .skillsPage .skillFolderProductInserts,
+  .skillsPage .skillFolderToolStack,
+  .skillsPage .skillFolderEvalInsert,
+  .skillsPage .skillFolderDocInsert {
+    opacity: 0.72;
+    transform: translateY(-16%) scale(0.82);
+    transform-origin: top right;
+  }
+
+  .designWorksSection {
+    width: 100%;
+    min-height: 100svh;
+    padding: 88px 24px 42px;
+    overflow-x: hidden;
+  }
+
+  .designWorksHeader {
+    text-align: center;
+  }
+
+  .designWorksHeader h1 {
+    font-size: clamp(31px, 8.8vw, 38px);
+    line-height: 1.08;
+  }
+
+  .designWorksHeader span {
+    white-space: normal;
+  }
+
+  .designCarouselStage {
+    min-height: 455px;
+    overflow: hidden;
+  }
+
+  .designCarouselCards {
+    height: 430px;
+  }
+
+  .designWorkCard {
+    width: min(258px, 72vw);
+    height: 402px;
+  }
+
+  .designWorkCard[data-offset="-2"],
+  .designWorkCard[data-offset="2"] {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.58);
+  }
+
+  .designWorkCard[data-offset="-1"] {
+    opacity: 0.2;
+    transform: translate(calc(-50% - 108px), -50%) scale(0.72);
+  }
+
+  .designWorkCard[data-offset="0"] {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .designWorkCard[data-offset="1"] {
+    opacity: 0.2;
+    transform: translate(calc(-50% + 108px), -50%) scale(0.72);
+  }
+
+  .designCarouselButton {
+    width: 46px;
+    height: 46px;
+  }
+
+  .designCarouselButtonPrevious {
+    left: 2px;
+  }
+
+  .designCarouselButtonNext {
+    right: 2px;
+  }
+
+  .designCarouselMeta {
+    transform: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .topNavLinks a {
+    padding: 0 9px;
+    font-size: 11px;
+  }
+
+  .hero,
+  .folderPage,
+  .skillsPage,
+  .projectsPage,
+  .workFloatPage,
+  .designWorksSection {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .introHero .scriptName {
+    font-size: 32px;
+  }
+
+  .introHero .heroCopy h1 {
+    font-size: 37px;
+  }
+
+  .designWorkCard {
+    width: 250px;
+  }
+}
+
+@media (max-width: 760px) {
+  .heroCopy *,
+  .workFloatCard *,
+  .skillsPage .skillFolderCard *,
+  .designWorksSection * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .introHero .scriptName {
+    font-size: clamp(30px, 9.4vw, 36px) !important;
+  }
+
+  .introHero .heroCopy h1 {
+    font-size: clamp(36px, 10vw, 42px) !important;
+  }
+
+  .introHero .lead {
+    font-size: 17px !important;
+    font-weight: 760;
+  }
+
+  .introFacts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .introFacts span {
+    width: 100%;
+    justify-content: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    white-space: normal;
+  }
+
+  .introFacts span:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .workFloatPage {
+    padding-right: 18px !important;
+    padding-left: 18px !important;
+  }
+
+  .workFloatHeader,
+  .workFloatTrack {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .workFloatCard {
+    padding: 14px !important;
+  }
+
+  .workFloatBody {
+    padding: 16px !important;
+  }
+
+  .skillsPage .skillFolderText p {
+    font-size: 13px !important;
+    line-height: 1.5;
+  }
+
+  .skillsPage .skillFolderProductInserts,
+  .skillsPage .skillFolderToolStack,
+  .skillsPage .skillFolderEvalInsert,
+  .skillsPage .skillFolderDocInsert {
+    max-width: 34%;
+  }
+
+  .designWorksHeader h1 {
+    max-width: 100%;
+    font-size: clamp(28px, 8vw, 34px) !important;
+  }
+
+  .designCarouselStage {
+    min-height: 420px !important;
+  }
+
+  .designCarouselCards {
+    height: 392px !important;
+  }
+
+  .designWorkCard {
+    width: min(226px, 64vw) !important;
+    height: 360px !important;
+  }
+
+  .designWorkCard[data-offset="-1"] {
+    opacity: 0.16;
+    transform: translate(calc(-50% - 82px), -50%) scale(0.7) !important;
+  }
+
+  .designWorkCard[data-offset="1"] {
+    opacity: 0.16;
+    transform: translate(calc(-50% + 82px), -50%) scale(0.7) !important;
+  }
+
+  .designCarouselMeta h2 {
+    font-size: 22px;
+  }
+
+  .designCarouselMeta p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 760px) {
+  .introHero .lead,
+  .introNote,
+  .workFloatBody p,
+  .skillsPage .skillFolderText p,
+  .designWorksHeader h1,
+  .designWorksHeader span,
+  .designCarouselMeta h2,
+  .designCarouselMeta p {
+    white-space: normal !important;
+    word-break: break-word;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  .introFacts {
+    grid-template-columns: 1fr !important;
+  }
+
+  .introFacts span {
+    justify-content: flex-start;
+  }
+
+  .skillsPage .skillFolderText {
+    overflow: visible !important;
+  }
+
+  .skillsPage .skillFolderChips {
+    align-content: end;
+  }
+
+  .skillsPage .skillFolderChips span {
+    white-space: normal !important;
+    line-height: 1.2;
+  }
+
+  .designWorksHeader {
+    overflow: visible !important;
+  }
+
+  .designCarouselButtonPrevious {
+    left: 0 !important;
+  }
+
+  .designCarouselButtonNext {
+    right: 0 !important;
   }
 }

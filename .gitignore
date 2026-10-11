@@ -17,6 +17,7 @@
 /.next/
 /.vinext/
 /out/
+/tmp/
 
 # misc
 .DS_Store
@@ -39,4 +40,7 @@ next-env.d.ts
 /dist/
 /.wrangler/
 /outputs/
+/output/
+/cos-upload-*/
+/薛瑞涵-作品集-图片版.pdf
 /work/

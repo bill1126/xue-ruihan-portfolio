@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import TopNav from "../components/TopNav";
 import { projects } from "../projects";
+import { assetPath } from "../assetPath";
 
 export const metadata = {
   title: "项目作品 | 薛瑞涵",
@@ -25,7 +26,7 @@ export default function ProjectsPage() {
         {projects.map((project) => (
           <Link
             className="projectCard projectFileCard"
-            href={`/projects/${project.slug}`}
+            href={assetPath(`/projects/${project.slug}`)}
             key={project.slug}
           >
             <div
@@ -33,7 +34,7 @@ export default function ProjectsPage() {
               style={
                 project.cover
                   ? ({
-                      "--project-cover": `url(${project.cover})`,
+                      "--project-cover": `url(${assetPath(project.cover)})`,
                     } as CSSProperties)
                   : undefined
               }

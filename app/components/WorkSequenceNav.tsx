@@ -3,6 +3,7 @@
 import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import { workImageGroups } from "../workImageGroups";
+import { assetPath } from "../assetPath";
 
 type WorkSequenceNavProps = {
   activeId?: string;
@@ -56,7 +57,7 @@ export default function WorkSequenceNav({ activeId: initialActiveId = workImageG
       {workImageGroups.map((group, index) => (
         <a
           className={activeId === group.id ? "isActive" : undefined}
-          href={`${group.href}/#${group.id}`}
+          href={`${assetPath(group.href)}/#${group.id}`}
           key={group.id}
           onClick={handleClick(group.id)}
           aria-current={activeId === group.id ? "location" : undefined}

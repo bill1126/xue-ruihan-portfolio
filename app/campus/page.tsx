@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default function CampusPage() {
-  const educationItems = [...campusItems].reverse().map((item, index) => ({
+  const educationItems = campusItems.map((item, index) => ({
     ...item,
     displayIndex: String(index + 1).padStart(2, "0"),
     displaySchool:
@@ -19,10 +19,6 @@ export default function CampusPage() {
   return (
     <main className="folderPage campusPage">
       <TopNav active="campus" />
-      <section className="campusHero">
-        <p className="scriptName pageScript">Campus</p>
-        <h1>校园经历</h1>
-      </section>
 
       <section className="campusEducationList" aria-label="教育经历">
         {educationItems.map((item) => (

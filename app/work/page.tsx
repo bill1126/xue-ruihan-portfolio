@@ -50,11 +50,6 @@ export default function WorkPage() {
       <TopNav active="work" />
 
       <section className="workFloatPage">
-        <div className="workFloatHeader">
-          <p>Experience Archive</p>
-          <h1>实习和项目经历</h1>
-        </div>
-
         <WorkFloatGallery items={workItems} />
       </section>
     </main>
